@@ -24,9 +24,15 @@ def draw_pythagoras_tree(ax, x, y, angle, size, level):
     new_angle1 = angle + 45
     new_angle2 = angle - 45
     
+    # Calculate the new starting points for the smaller trees
+    new_x1 = x3 + new_size * np.cos(np.radians(new_angle1))
+    new_y1 = y3 + new_size * np.sin(np.radians(new_angle1))
+    new_x2 = x2 + new_size * np.cos(np.radians(new_angle2))
+    new_y2 = y2 + new_size * np.sin(np.radians(new_angle2))
+    
     # Draw the two smaller trees
-    draw_pythagoras_tree(ax, x3, y3, new_angle1, new_size, level - 1)
-    draw_pythagoras_tree(ax, x2, y2, new_angle2, new_size, level - 1)
+    draw_pythagoras_tree(ax, new_x1, new_y1, new_angle1, new_size, level - 1)
+    draw_pythagoras_tree(ax, new_x2, new_y2, new_angle2, new_size, level - 1)
 
 def main():
     fig, ax = plt.subplots()
